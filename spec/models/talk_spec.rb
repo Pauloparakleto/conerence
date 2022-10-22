@@ -33,4 +33,14 @@ RSpec.describe Talk, type: :model do
       expect(talk.reload.initial_time.hour).not_to eq(9)
     end
   end
+
+  context 'when destroy' do
+    let!(:talks) { FactoryBot.create_list :talk, 3 }
+
+    it 'counts by -1' do
+      expect do
+        talks.last.destroy
+      end.to change(Talk, :count).by(-1)
+    end
+  end
 end
