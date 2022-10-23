@@ -1,0 +1,17 @@
+<h1>Edit Talk</h1>
+
+<%= form_with model: @talk do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :initial_time %><br>
+    <%= form.text_field :initial_time %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

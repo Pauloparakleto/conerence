@@ -1,0 +1,6 @@
+<h1><%= @talk.name %></h1>
+<h2><%= @talk.initial_time %></h2>
+<h2>Description example</h2>
+<h3><%= link_to 'Update Talk', edit_talk_path(@talk) %><h3>
+<h3><%= link_to 'Back to Talk List', talks_path %><h3>
+<h3><%= link_to 'Delete this talk', talk_path(@talk), method: :delete, data: { confirm: "Are you sure you want to delete #{@talk.name}?" } %><h3>
