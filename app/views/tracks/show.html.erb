@@ -1,0 +1,5 @@
+<h1><%= @track.name %></h1>
+<h2>Description example</h2>
+<h3><%= link_to 'Update Track', edit_track_path(@track) %><h3>
+<h3><%= link_to 'Back to Track List', tracks_path %><h3>
+<h3><%= link_to 'Delete this Track', track_path(@track), method: :delete, data: { confirm: "Are you sure you want to delete #{@track.name}?" } %><h3>
