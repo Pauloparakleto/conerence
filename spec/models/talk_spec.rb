@@ -6,6 +6,11 @@ RSpec.describe Talk, type: :model do
         should_not allow_values('My conference 123', '2 Another conference1', '333', 'w222', 'w 23').
           for(:name)
     end
+
+    it do
+      should_not allow_values('12', '12:00', '12:01', '12:59').
+        for(:initial_time)
+    end
   end
   
   let(:current_time) { Time.now }
