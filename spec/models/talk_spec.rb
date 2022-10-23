@@ -3,8 +3,13 @@ require 'rails_helper'
 RSpec.describe Talk, type: :model do
   describe 'attributes validations' do
     it do
-        should_not allow_values('My conference 123', '2 Another conference1', '333', 'w222', 'w 23').
+        should_not allow_values('2 Another conference1', '333', 'w222', 'w 23', 'My conference 123', '2a').
           for(:name)
+    end
+
+    it do
+      should allow_values('My conference', 'this is my conference').
+        for(:name)
     end
 
     it do
