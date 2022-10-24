@@ -12,7 +12,7 @@
     <% @talks.each do |talk| %>
       <tr>
         <td><%= link_to talk.name, talk_path(talk) %></td>
-        <td><%= talk.initial_time %></td>
+        <td><%= talk.pretty_initial_time %></td>
       </tr>
     <% end %>
   </table>
