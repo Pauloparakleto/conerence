@@ -17,6 +17,14 @@ RSpec.describe Talk, type: :model do
         for(:initial_time)
     end
   end
+
+  describe '#pretty_initial_time' do
+    let(:talk) { FactoryBot.create(:talk) }
+    
+    it 'is equal to 09:00' do
+      expect(talk.pretty_initial_time).to eq('09:00')
+    end
+  end
   
   let(:current_time) { Time.now }
 

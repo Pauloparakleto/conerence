@@ -8,6 +8,11 @@ class Talk < ApplicationRecord
     initial_time.hour == LUNCHING_TIME_HOUR
   end
 
+
+  def pretty_initial_time
+    initial_time&.strftime('%H:%M')
+  end
+
   private
 
   def initial_time_can_not_be_in_lunching_time_hour

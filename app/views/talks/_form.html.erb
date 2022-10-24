@@ -6,7 +6,7 @@
 
   <div>
     <%= form.label :initial_time %><br>
-    <%= form.text_field :initial_time %>
+    <%= form.time_field :initial_time, include_seconds: false, value: @talk.pretty_initial_time, min: '09:00' %>
   </div>
 
   <div>
