@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Track, type: :model do
+  describe 'associations' do
+    it { should have_many(:talks).dependent(:destroy) }
+  end
+
   describe 'attributes validations' do
     it do
         should allow_values('Track A', 'Track B', 'A', 'B', 'C', 'my good track').

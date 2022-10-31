@@ -7,4 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Module Talks
-FactoryBot.create_list(:talk, 5)
+talks = FactoryBot.create_list(:talk, 5)
+
+#Module Tracks
+FactoryBot.create(:track, talks: talks )
