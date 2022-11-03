@@ -31,6 +31,13 @@ RSpec.describe 'Talks', type: :request do
     end
   end
 
+  describe 'POST /create_by_csv' do
+    it 'returns http success' do
+      post create_by_csv_talks_path, params: { talk: { file: file_fixture('valid_talks.csv')} }
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'GET /edit' do
     it 'returns http success' do
       get edit_talk_path(talks.first)
