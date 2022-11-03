@@ -21,6 +21,10 @@ class TalksController < ApplicationController
     end
   end
 
+  def create_by_csv
+    head :ok
+  end
+
   def edit
     @talk = Talk.find(params[:id])
   end
