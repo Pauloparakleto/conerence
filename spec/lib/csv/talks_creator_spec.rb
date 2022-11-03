@@ -14,19 +14,19 @@ RSpec.describe Csv::TalksCreator, type: :model do
   describe '#call' do
     let!(:valid_talks_csv) { file_fixture('valid_talks.csv') }
 
-    it 'is thuthy' do
+    it 'is creates first talk' do
       valid_talks_creator_initialize.call
 
       expect(Talk.first).to be_truthy
     end
 
-    it 'has initial_time.hour equal to 9' do
+    it 'has talk initial_time.hour equal to 9' do
       valid_talks_creator_initialize.call
 
       expect(Talk.first.initial_time.hour).to eq(9)
     end
 
-    it 'has pretty_initial_time equal to 09:00' do
+    it 'has first Talk pretty_initial_time equal to 09:00' do
       valid_talks_creator_initialize.call
 
       expect(Talk.first.pretty_initial_time).to eq('09:00')
