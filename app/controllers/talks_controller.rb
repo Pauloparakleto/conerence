@@ -23,6 +23,8 @@ class TalksController < ApplicationController
 
   # TODO: Add lib ::CSV::TalksCreator.new(path_file)
   def create_by_csv
+    csv_file = talk_params[:file]
+    Csv::TalksCreator.new(csv_file).call
     head :ok
   end
 
@@ -50,6 +52,6 @@ class TalksController < ApplicationController
   private
 
     def talk_params
-      params.require(:talk).permit(:name, :initial_time, :track_id)
+      params.require(:talk).permit(:name, :initial_time, :track_id, :file)
     end
 end
