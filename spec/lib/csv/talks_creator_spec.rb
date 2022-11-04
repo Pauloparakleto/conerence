@@ -36,6 +36,10 @@ RSpec.describe Csv::TalksCreator, type: :model do
       it 'has second Talk pretty_initial_time not equal to 09:00' do
         expect(Talk.second.pretty_initial_time).not_to eq('09:00')
       end
+
+      it 'has second Talk pretty_initial_time equal to 10:00' do
+        expect(Talk.second.pretty_initial_time).to eq('10:00')
+      end
   
       it 'counts Talk by 20' do
         expect{ valid_talks_creator_initialize.call }.to change(Talk, :count).by(20)
