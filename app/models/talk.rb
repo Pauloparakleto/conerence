@@ -2,7 +2,7 @@ class Talk < ApplicationRecord
   LUNCHING_TIME_HOUR = 12
 
   validate :initial_time_can_not_be_in_lunching_time_hour
-  validates_format_of :name, with: /\A([a-zA-Z\s]{1,})\z/
+  validates_format_of :name, with: /\A([[:punct:][a-zA-Z\u00C0-\u00FF\s]]{1,})\z/
 
   def is_lunching_time?
     initial_time.hour == LUNCHING_TIME_HOUR
