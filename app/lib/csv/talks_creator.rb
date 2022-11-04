@@ -1,8 +1,10 @@
+require 'active_support/core_ext/numeric/bytes.rb'
 require 'csv'
 
 module Csv
   class TalksCreator
     attr_accessor :csv_file
+    BASE_INITIAL_TIME = '09:00'
 
     def initialize(csv_file)
       @csv_file = csv_file
@@ -10,13 +12,18 @@ module Csv
 
     def call
       talks = []
+      time_duration = 0
 
       CSV.read(csv_file).each do |csv|
 
         #TODO: check cases when there is commas in name, must be created with commas
         name = csv.join.split(/\w+\z/).first.strip!
-        ititial_time = '09:00' if talks.length.zero?
-        talks << Talk.create(name: name, initial_time: ititial_time)
+
+        initial_time = talks.length.zero? ? BASE_INITIAL_TIME : talks.last.initial_time + time_duration.minutes
+        # FIXME: is there another way to avoid calling joint twice?
+        time_duration = csv.join.scan(/\w+$/).join.split(/min/).first.to_i
+
+        talks << Talk.create(name: name, initial_time: initial_time)
       end
 
       talks
