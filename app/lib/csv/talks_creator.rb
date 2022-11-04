@@ -18,7 +18,8 @@ module Csv
         #TODO: check cases when there is commas in name, must be created with commas
         name = csv.join.split(/\w+\z/).first.strip!
 
-        initial_time = talks.length.zero? ? '09:00' : talks.first.initial_time + time_duration.minutes 
+        initial_time = talks.length.zero? ? '09:00' : talks.first.initial_time + time_duration.minutes
+        # FIXME: is there another way to avoid calling joint twice?
         time_duration = csv.join.scan(/\w+$/).join.split(/min/).first.to_i
 
         talks << Talk.create(name: name, initial_time: initial_time)
