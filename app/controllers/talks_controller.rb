@@ -21,7 +21,6 @@ class TalksController < ApplicationController
     end
   end
 
-  # TODO: Add lib ::CSV::TalksCreator.new(path_file)
   def create_by_csv
     csv_file = talk_params[:file]
     Csv::TalksCreator.new(csv_file).call
