@@ -1,3 +1,4 @@
+require 'active_support/core_ext/numeric/bytes.rb'
 require 'csv'
 
 module Csv
@@ -15,8 +16,12 @@ module Csv
 
         #TODO: check cases when there is commas in name, must be created with commas
         name = csv.join.split(/\w+\z/).first.strip!
-        ititial_time = '09:00' if talks.length.zero?
-        talks << Talk.create(name: name, initial_time: ititial_time)
+        if talks.length.zero?
+         initial_time = '09:00'
+        else
+          initial_time = talks.first.initial_time + 60.minutes
+        end
+        talks << Talk.create(name: name, initial_time: initial_time)
       end
 
       talks
