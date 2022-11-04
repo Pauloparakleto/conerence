@@ -11,16 +11,16 @@ module Csv
 
     def call
       talks = []
+      time_duration = 0
 
       CSV.read(csv_file).each do |csv|
 
         #TODO: check cases when there is commas in name, must be created with commas
         name = csv.join.split(/\w+\z/).first.strip!
-        if talks.length.zero?
-         initial_time = '09:00'
-        else
-          initial_time = talks.first.initial_time + 60.minutes
-        end
+
+        initial_time = talks.length.zero? ? '09:00' : talks.first.initial_time + time_duration.minutes 
+        time_duration = csv.join.scan(/\w+$/).join.split(/min/).first.to_i
+
         talks << Talk.create(name: name, initial_time: initial_time)
       end
 
