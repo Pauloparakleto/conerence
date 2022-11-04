@@ -8,7 +8,13 @@ RSpec.describe Talk, type: :model do
     end
 
     it do
-      should allow_values('My conference', 'this is my conference').
+      should allow_values(
+        'My conference', 'this is my conference',
+        'Diminuindo tempo de execução de testes em aplicações Rails enterprise',
+        "Ruby vs. Clojure para desenvolvimento backend",
+        'Trabalho remoto: prós e cons',
+        'Aplicações isomórficas: o futuro (que talvez nunca chegaremos)',
+        'Tailwind, Bootstrap, Css, qual devo usar?').
         for(:name)
     end
 
