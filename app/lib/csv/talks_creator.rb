@@ -25,7 +25,7 @@ module Csv
 
         # TODO: must warant uniqueness of name since it will find the first
 
-        track = Track.find_or_create_by(name: 'A')
+        track = Track.find_or_create_by(name: 'Track A')
 
         talks << Talk.create(name: name, initial_time: initial_time, track_id: track.id)
       end

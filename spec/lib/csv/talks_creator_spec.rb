@@ -55,7 +55,7 @@ RSpec.describe Csv::TalksCreator, type: :model do
       end
 
       it 'creates Track A associated with first Talk whose name is A' do
-        expect(Talk.first.track.name).to eq('A')
+        expect(Talk.first.track.name).to eq('Track A')
       end
     end
   end
