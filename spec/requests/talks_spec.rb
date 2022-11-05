@@ -35,7 +35,7 @@ RSpec.describe 'Talks', type: :request do
     it 'returns http success' do
       expect do
         post create_by_csv_talks_path, params: { file: file_fixture('valid_talks.csv') }
-      end.to change(Talk, :count).by(17)
+      end.to change(Talk, :count).by(20)
         
       expect(response).to have_http_status(302)
     end
