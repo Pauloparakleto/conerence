@@ -41,13 +41,22 @@ RSpec.describe Csv::TalksCreator, type: :model do
         expect(Talk.third.pretty_initial_time).to eq('10:45')
       end
 
-      it 'has second Talk pretty_initial_time equal to 11:15' do
+      it 'has fourth Talk pretty_initial_time equal to 11:15' do
         expect(Talk.fourth.pretty_initial_time).to eq('11:15')
       end
+
+      context 'and initial_time is in lunching time' do
+        it 'has fifth Talk pretty_initial_time equal to 13:00' do
+          expect(Talk.fifth.pretty_initial_time).to eq('13:00')
+        end
   
-      # TODO: must count by 20 after the lib TalksCreator avoids set initial_time in lunching time. Check validation in Talk model
+        it 'has sixth Talk pretty_initial_time equal to 13:45' do
+          expect(Track.first.talks[5].pretty_initial_time).to eq('13:45')
+        end  
+      end
+
       it 'counts Talk by 20' do
-        expect{ valid_talks_creator_initialize.call }.to change(Talk, :count).by(17)
+        expect{ valid_talks_creator_initialize.call }.to change(Talk, :count).by(20)
       end
 
       it 'creates Track A associated with first Talk' do
