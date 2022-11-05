@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Talk, type: :model do
+  describe 'columns presence and types' do
+    it do
+      should have_db_column(:track_id).of_type(:integer)
+    end
+  end
+
+  describe 'associations' do
+    it { should belong_to(:track).without_validating_presence }
+  end
+
   describe 'attributes validations' do
     it do
         should_not allow_values('2 Another conference1', '333', 'w222', 'w 23', 'My conference 123', '2a').
