@@ -49,6 +49,14 @@ RSpec.describe Csv::TalksCreator, type: :model do
       it 'counts Talk by 20' do
         expect{ valid_talks_creator_initialize.call }.to change(Talk, :count).by(17)
       end
+
+      it 'creates Track A associated with first Talk' do
+        expect(Talk.first.track).to be_truthy
+      end
+
+      it 'creates Track A associated with first Talk whose name is A' do
+        expect(Talk.first.track.name).to eq('Track A')
+      end
     end
   end
 end

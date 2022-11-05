@@ -23,7 +23,11 @@ module Csv
         # FIXME: is there another way to avoid calling joint twice?
         time_duration = csv.join.scan(/\w+$/).join.split(/min/).first.to_i
 
-        talks << Talk.create(name: name, initial_time: initial_time)
+        # TODO: must warant uniqueness of name since it will find the first
+
+        track = Track.find_or_create_by(name: 'Track A')
+
+        talks << Talk.create(name: name, initial_time: initial_time, track_id: track.id)
       end
 
       talks
