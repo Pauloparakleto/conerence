@@ -15,3 +15,10 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<%= form_with url: create_by_csv_talks_path, method: :post do |form| %>
+  <h2>Or update a csv file to create talks<h2/>
+  <%= form.file_field :file %>
+  <%= form.submit "Create by CSV" %>
+<% end %>
+
