@@ -14,6 +14,34 @@ RSpec.describe Csv::TalksCreator, type: :model do
   describe '#call' do
     let!(:valid_talks_csv) { file_fixture('valid_talks.csv') }
 
+    context 'when flag as lightning' do
+      let!(:row1) { 'Rails para usuários de Django lightning' }
+      let!(:row2) { 'Erros comuns em Ruby lightning' }
+      let!(:rows) { [row1, row2] }
+
+      let(:file_path) { 'tmp/lightnings_talks.csv' }
+
+      let!(:csv) do
+        CSV.open(file_path, 'w') do |csv|
+          rows.each do |row|
+            csv << [row]
+          end
+        end
+      end
+
+      before { described_class.new(file_path).call }
+
+      after(:each) { File.delete(file_path) }
+
+      it 'set second initial_time to 09:05' do
+        expect(Talk.first.pretty_initial_time).to eq('09:00')
+      end
+
+      it 'set second initial_time to 09:05' do
+        expect(Talk.second.pretty_initial_time).to eq('09:05')
+      end
+    end
+
     context 'when create valids' do
       before { valid_talks_creator_initialize.call }
 
