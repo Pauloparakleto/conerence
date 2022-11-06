@@ -1,0 +1,20 @@
+<h1>Palestras</h1>
+
+<section>
+  <h2>
+    <%= link_to "Create", new_talk_path %>
+  </h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Start Time</th>
+    </tr>
+    <% @talks.each do |talk| %>
+      <tr>
+        <td><%= link_to talk.name, talk_path(talk) %></td>
+        <td><%= talk.pretty_initial_time %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
+

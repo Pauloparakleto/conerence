@@ -22,7 +22,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.2
+          ruby-version: 3.1.2
       - name: Run the default task
         env:
           PGHOST: localhost
@@ -37,4 +37,5 @@ jobs:
           bundle exec rails db:create
           bundle exec rails db:migrate
           bundle exec rails db:seed
+          rails webpacker:install
           bundle exec rspec

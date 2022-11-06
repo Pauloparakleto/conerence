@@ -37,3 +37,6 @@ yarn-debug.log*
 
 /config/database.yml
 .env
+
+/db/schema.rb
+spec/fixtures/files/.~lock.valid_talks.csv#

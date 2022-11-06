@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Module Talks
+talks = FactoryBot.create_list(:talk, 5)
+
+#Module Tracks
+FactoryBot.create(:track, talks: talks )
