@@ -22,8 +22,10 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# nets, check https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp
 gem 'net-smtp', require: false
 gem 'net-pop', require: false
+gem 'net-imap', require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
