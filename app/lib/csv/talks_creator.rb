@@ -22,14 +22,9 @@ module Csv
 
         initial_time = talks.length.zero? ? BASE_INITIAL_TIME : talks.last.initial_time + time_duration.minutes
         # FIXME: is there another way to avoid calling joint twice?
-        time_duration = csv.join.scan(/\w+$/).join
-
-        if time_duration.eql?('lightning')
-          time_duration = 5
-        else
-          time_duration = time_duration.split(/min/).first.to_i
-        end
-
+        
+        time_duration = set_time_duration(csv)
+        
         # Avoiding lunching time and set it one hour later may be up to Talk model level. Opened discussion.
 
         initial_time += 1.hour if talks.length > 0 && initial_time.hour.eql?(LUNCHING_TIME)
@@ -38,10 +33,24 @@ module Csv
 
         track = Track.find_or_create_by(name: 'Track A')
 
+        # TODO: Build Talks in the Track collection and save once
+
         talks << Talk.create(name: name, initial_time: initial_time, track_id: track.id)
       end
 
       talks
+    end
+
+    private
+
+    def set_time_duration(csv)
+      time_duration = csv.join.scan(/\w+$/).join
+      
+      if time_duration.eql?('lightning')
+        time_duration = 5
+      else
+        time_duration = time_duration.split(/min/).first.to_i
+      end
     end
   end
 end
