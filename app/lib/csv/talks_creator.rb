@@ -22,7 +22,13 @@ module Csv
 
         initial_time = talks.length.zero? ? BASE_INITIAL_TIME : talks.last.initial_time + time_duration.minutes
         # FIXME: is there another way to avoid calling joint twice?
-        time_duration = csv.join.scan(/\w+$/).join.split(/min/).first.to_i
+        time_duration = csv.join.scan(/\w+$/).join
+
+        if time_duration.eql?('lightning')
+          time_duration = 5
+        else
+          time_duration = time_duration.split(/min/).first.to_i
+        end
 
         # Avoiding lunching time and set it one hour later may be up to Talk model level. Opened discussion.
 
