@@ -42,6 +42,12 @@ RSpec.describe Csv::TalksCreator, type: :model do
       end
     end
 
+    context 'when count Tracks' do
+      it 'counts Track by 2' do
+        expect{ valid_talks_creator_initialize.call }.to change(Track, :count).by(2)
+      end
+    end
+
     context 'when create valids' do
       before { valid_talks_creator_initialize.call }
 
@@ -81,6 +87,40 @@ RSpec.describe Csv::TalksCreator, type: :model do
         it 'has sixth Talk pretty_initial_time equal to 13:45' do
           expect(Track.first.talks[5].pretty_initial_time).to eq('13:45')
         end  
+      end
+
+      it 'has seventh Talk pretty_initial_time equal to 13:50' do
+        expect(Track.first.talks[6].pretty_initial_time).to eq('13:50')
+      end
+      
+      it 'has eighth Talk pretty_initial_time equal to 14:50' do
+        expect(Track.first.talks[7].pretty_initial_time).to eq('14:50')
+      end
+
+      it 'has nineth Talk pretty_initial_time equal to 15:35' do
+        expect(Track.first.talks[8].pretty_initial_time).to eq('15:35')
+      end
+      
+      it 'has nineth Talk pretty_initial_time equal to 16:05' do
+        expect(Track.first.talks[9].pretty_initial_time).to eq('16:05')
+      end 
+
+      it 'has nineth Talk pretty_initial_time equal to 16:35' do
+        expect(Track.first.talks[10].pretty_initial_time).to eq('16:35')
+      end
+
+      context 'when Track A is full' do
+        it 'creates second track' do
+          expect(Track.second).to be_truthy
+        end
+
+        it 'has second track name equal to Track B' do
+          expect(Track.second.name).to eq('Track B')
+        end
+
+        it 'has second track first talk pretty_initial_time equal to base initial time' do
+          expect(Track.second.talks.first.pretty_initial_time).to eq('09:00')
+        end
       end
 
       it 'counts Talk by 20' do
