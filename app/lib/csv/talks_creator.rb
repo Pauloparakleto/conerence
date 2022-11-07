@@ -6,9 +6,20 @@ module Csv
     attr_accessor :csv_file
     BASE_INITIAL_TIME = '09:00'
     LUNCHING_TIME = 12
+    NETWORK_INITIAL_TIME = 17
+    TRACK_NAMES = ('A'..'D').to_a
 
     def initialize(csv_file)
       @csv_file = csv_file
+      @track_name_index = 0
+    end
+
+    def track_name
+      "Track #{TRACK_NAMES[@track_name_index]}"
+    end
+
+    def next_track_name
+      @track_name_index +=1
     end
 
     def call
@@ -31,7 +42,14 @@ module Csv
 
         # TODO: must warant uniqueness of name since it will find the first
 
-        track = Track.find_or_create_by(name: 'Track A')
+        # TODO: use base initial time as integer if possible to allow refactor
+
+        if talks.length > 0 && initial_time.hour >= NETWORK_INITIAL_TIME
+          next_track_name
+          initial_time = BASE_INITIAL_TIME
+        end
+
+        track = Track.find_or_create_by(name: track_name)
 
         # TODO: Build Talks in the Track collection and save once
 
