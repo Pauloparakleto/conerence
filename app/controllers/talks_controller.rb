@@ -1,6 +1,6 @@
 class TalksController < ApplicationController
   def index
-    @talks = Talk.all
+    @talks = Talk.all.order('initial_time')
   end
 
   def show
